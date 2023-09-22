@@ -21,13 +21,13 @@ docker-compose up -d
 ### 获取RED_PROTOCOL_TOKEN
 
 ```bash
-docker exec ubuntu2204 cat /home/user/BetterUniverse/QQNT/RED_PROTOCOL_TOKEN
+docker exec chronocat-docker cat /home/user/BetterUniverse/QQNT/RED_PROTOCOL_TOKEN
 ```
 
 ### 修改VNC密码
 
 ```bash
-docker exec ubuntu2204 sh -c "x11vnc -storepasswd newpasswd /root/.vnc/passwd"
+docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/passwd"
 ```
 
 其中newpasswd换成你的新密码，完成后重启容器
