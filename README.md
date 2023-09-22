@@ -32,10 +32,14 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 
 其中newpasswd换成你的新密码，完成后重启容器
 
+## 已知问题
+
+- 容器重启后，桌面的任务栏可能会消失，如果触发了请不要缩小或者点叉关闭，建议保持在聊天的界面，再关闭VNC远程
+
 ## TODO
 
-- [ ] 使用docker-compose.yml的environment来修改VNC密码
-- [ ] 能固化已登陆QQ的数据
+- [ ] 使用docker的environment来指定VNC密码
+- [ ] 能固化已登陆QQ的数据（按照docker特性似乎无法做到）
 
 
 
