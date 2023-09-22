@@ -30,7 +30,7 @@ docker exec chronocat-docker cat /home/user/BetterUniverse/QQNT/RED_PROTOCOL_TOK
 docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/passwd"
 ```
 
-其中newpasswd换成你的新密码，完成后重启容器
+其中newpasswd换成你的新密码，立即生效，无需重启容器
 
 ## 已知问题
 
