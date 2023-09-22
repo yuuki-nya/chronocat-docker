@@ -1,0 +1,11 @@
+services:
+  chronocat-docker:
+    image: yuukinya/chronocat-docker
+    tty: true
+    container_name: chronocat-docker
+    restart: always
+    ports:
+      - "5900:5900"
+      - "16530:16530"
+    environment:
+      - TZ=Asia/Shanghai
