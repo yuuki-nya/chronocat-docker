@@ -5,7 +5,7 @@
 ## 使用
 
 ```bash
-docker run --rm -it -p 16530:16530 5900:5900 yuukinya/chronocat-docker
+docker run -d --name chronocat-docker -p 16530:16530 -p 5900:5900 yuukinya/chronocat-docker
 ```
 
 或者下载代码中的docker-compose.yml，然后执行
