@@ -24,9 +24,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 新增用户
-RUN useradd -m -s /bin/bash user && echo 'user'
-
 # 安装Linux QQ
 RUN curl -o /root/linuxqq_3.1.2-13107_amd64.deb https://dldir1.qq.com/qqfile/qq/QQNT/ad5b5393/linuxqq_3.1.2-13107_amd64.deb
 RUN dpkg -i /root/linuxqq_3.1.2-13107_amd64.deb && apt-get -f install -y && rm /root/linuxqq_3.1.2-13107_amd64.deb
@@ -39,10 +36,9 @@ RUN curl -L -o /tmp/LiteLoaderQQNT.zip https://github.com/LiteLoaderQQNT/LiteLoa
 RUN sed -i 's/"main": ".\/app_launcher\/index.js"/"main": ".\/LiteLoader"/' /opt/QQ/resources/app/package.json
 
 # 安装chronocat  
-RUN curl -L -o /tmp/chronocat-llqqnt.zip https://github.com/chrononeko/chronocat/releases/download/v0.0.45/chronocat-llqqnt-v0.0.45.zip \
-  && mkdir -p /home/user/LiteLoaderQQNT/plugins \
-  && unzip /tmp/chronocat-llqqnt.zip -d /home/user/LiteLoaderQQNT/plugins/ \
-  && chown -R user /home/user/LiteLoaderQQNT \
+RUN curl -L -o /tmp/chronocat-llqqnt.zip https://ghproxy.com/https://github.com/chrononeko/chronocat/releases/download/v0.0.46/chronocat-llqqnt-v0.0.46.zip \
+  && mkdir -p /root/LiteLoaderQQNT/plugins \
+  && unzip /tmp/chronocat-llqqnt.zip -d /root/LiteLoaderQQNT/plugins/ \
   && rm /tmp/chronocat-llqqnt.zip
 
 # 创建必要的目录
@@ -58,7 +54,7 @@ RUN echo "Xvfb :1 -screen 0 1280x1024x16 &" >> ~/start.sh
 RUN echo "export DISPLAY=:1" >> ~/start.sh
 RUN echo "fluxbox &" >> ~/start.sh
 RUN echo "x11vnc -display :1 -noxrecord -noxfixes -noxdamage -forever -rfbauth ~/.vnc/passwd &" >> ~/start.sh
-RUN echo "su -c 'qq' user" >> ~/start.sh
+RUN echo "su -c 'qq' root" >> ~/start.sh
 RUN chmod +x ~/start.sh
 
 # 配置supervisor

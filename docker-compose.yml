@@ -9,3 +9,6 @@ services:
       - "16530:16530"
     environment:
       - TZ=Asia/Shanghai
+    volumes:
+      - ./config:/root/.chronocat/config
+      # - ./data/QQ:/root/.config/QQ #QQ数据固化目录，请先阅读README再使用

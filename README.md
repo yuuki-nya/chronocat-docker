@@ -4,11 +4,38 @@
 
 ## 使用
 
+### 快速运行
+
+容器重建会丢失已登陆QQ数据
+
 ```bash
-docker run -d --name chronocat-docker -p 16530:16530 -p 5900:5900 yuukinya/chronocat-docker
+docker run -d --name chronocat-docker -p 16530:16530 -p 5900:5900 -v ${PWD}/config:/root/.chronocat/config yuukinya/chronocat-docker
 ```
 
 或者下载代码中的docker-compose.yml，然后执行
+
+```bash
+docker-compose up -d
+```
+
+### QQ登陆数据固化（可选）
+
+先完成上面的`快速运行`，保证容器在运行状态
+
+```bash
+# 进入项目目录
+mkdir data
+# 复制数据到data目录
+docker cp chronocat-docker:/root/.config/QQ ./data
+```
+
+如果之前是docker run运行的，执行
+
+```bash
+docker rm -f chronocat-docker && run -d --name chronocat-docker -p 16530:16530 -p 5900:5900 -v ${PWD}/config:/root/.chronocat/config -v ${PWD}/data/QQ:/root/.config/QQ yuukinya/chronocat-docker
+```
+
+如果之前是docker-compose运行的，编辑docker-compose.yml，把volumes下两行的开头注释去掉，保存，再执行
 
 ```bash
 docker-compose up -d
@@ -18,11 +45,9 @@ docker-compose up -d
 
 使用VNC软件登陆`服务器IP:5900`，默认密码是`vncpasswd`
 
-### 获取RED_PROTOCOL_TOKEN
+### 修改chronocat配置
 
-```bash
-docker exec chronocat-docker cat /home/user/BetterUniverse/QQNT/RED_PROTOCOL_TOKEN
-```
+修改当前目录/config/chronocat.yml，修改后重启容器即可
 
 ### 修改VNC密码
 
@@ -39,8 +64,18 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 
 ## TODO
 
+- [x] 能固化已登陆QQ的数据
 - [ ] 使用docker的environment来指定VNC密码
-- [ ] 能固化已登陆QQ的数据（可能因为容器重建随机生成设备ID而无法实现）
 
+## 更新日志
 
+### 2023-9-25
+
+- 更新chronocat至0.0.46
+- 修改chronocat配置映射至宿主机
+- 固化已登陆QQ数据
+
+### 2023-9-22
+
+- 初始版本
 
