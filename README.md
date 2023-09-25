@@ -35,11 +35,12 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 ## 已知问题
 
 - 容器重启后，桌面的任务栏可能会消失，如果触发了请不要缩小或者点叉关闭，建议保持在聊天的界面，再关闭VNC远程
+- 伪造转发暂不适配Linux QQ
 
 ## TODO
 
 - [ ] 使用docker的environment来指定VNC密码
-- [ ] 能固化已登陆QQ的数据（按照docker特性似乎无法做到）
+- [ ] 能固化已登陆QQ的数据（可能因为容器重随机生成设备ID而无法实现）
 
 
 
