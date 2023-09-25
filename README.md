@@ -40,7 +40,7 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 ## TODO
 
 - [ ] 使用docker的environment来指定VNC密码
-- [ ] 能固化已登陆QQ的数据（可能因为容器重随机生成设备ID而无法实现）
+- [ ] 能固化已登陆QQ的数据（可能因为容器重建随机生成设备ID而无法实现）
 
 
 
