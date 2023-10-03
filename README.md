@@ -65,6 +65,8 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 
 ## 如何更新
 
+本镜像一般不会只更新chronocat，如果需要只更新chronocat可以使用LiteLoaderQQNT自行更新
+
 1. 更新前请做好数据备份，比如数据固化
 
 2. 删除容器并删除镜像，下面是代码示例
