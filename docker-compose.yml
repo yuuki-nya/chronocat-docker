@@ -6,9 +6,11 @@ services:
     restart: always
     ports:
       - "5900:5900"
+      - "6081:6081"
       - "16530:16530"
     environment:
       - TZ=Asia/Shanghai
+      - VNC_PASSWD=vncpasswd
     volumes:
       - ./config:/root/.chronocat/config
       # - ./data/QQ:/root/.config/QQ #QQ数据固化目录，请先阅读README再使用

@@ -21,8 +21,16 @@ RUN apt-get update && apt-get install -y \
     libgbm1 \
     libasound2 \
     fonts-wqy-zenhei \
+    git \
+    gnutls-bin \    
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# 安装novnc
+RUN git config --global http.sslVerify false && git config --global http.postBuffer 1048576000
+RUN cd /opt && git clone https://github.com/novnc/noVNC.git
+RUN cd opt/noVNC/utils && git clone https://github.com/novnc/websockify.git
+RUN cp /opt/noVNC/vnc.html /opt/noVNC/index.html     
 
 # 安装Linux QQ
 RUN curl -o /root/linuxqq_3.1.2-13107_amd64.deb https://dldir1.qq.com/qqfile/qq/QQNT/ad5b5393/linuxqq_3.1.2-13107_amd64.deb
@@ -36,16 +44,13 @@ RUN curl -L -o /tmp/LiteLoaderQQNT.zip https://github.com/LiteLoaderQQNT/LiteLoa
 RUN sed -i 's/"main": ".\/app_launcher\/index.js"/"main": ".\/LiteLoader"/' /opt/QQ/resources/app/package.json
 
 # 安装chronocat  
-RUN curl -L -o /tmp/chronocat-llqqnt.zip https://ghproxy.com/https://github.com/chrononeko/chronocat/releases/download/v0.0.46/chronocat-llqqnt-v0.0.46.zip \
+RUN curl -L -o /tmp/chronocat-llqqnt.zip https://ghproxy.com/https://github.com/chrononeko/chronocat/releases/download/v0.0.48/chronocat-llqqnt-v0.0.48.zip \
   && mkdir -p /root/LiteLoaderQQNT/plugins \
   && unzip /tmp/chronocat-llqqnt.zip -d /root/LiteLoaderQQNT/plugins/ \
   && rm /tmp/chronocat-llqqnt.zip
 
 # 创建必要的目录
 RUN mkdir -p ~/.vnc
-
-# 设置VNC密码
-RUN x11vnc -storepasswd $VNC_PASSWD ~/.vnc/passwd
 
 # 创建启动脚本
 RUN echo "#!/bin/bash" > ~/start.sh
@@ -54,6 +59,8 @@ RUN echo "Xvfb :1 -screen 0 1280x1024x16 &" >> ~/start.sh
 RUN echo "export DISPLAY=:1" >> ~/start.sh
 RUN echo "fluxbox &" >> ~/start.sh
 RUN echo "x11vnc -display :1 -noxrecord -noxfixes -noxdamage -forever -rfbauth ~/.vnc/passwd &" >> ~/start.sh
+RUN echo "nohup /opt/noVNC/utils/novnc_proxy --vnc localhost:5900 --listen 6081 --file-only &" >> ~/start.sh
+RUN echo "x11vnc -storepasswd \$VNC_PASSWD ~/.vnc/passwd" >> ~/start.sh
 RUN echo "su -c 'qq' root" >> ~/start.sh
 RUN chmod +x ~/start.sh
 
