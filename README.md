@@ -9,7 +9,7 @@
 容器重建会丢失已登陆QQ数据
 
 ```bash
-docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5900:5900 -p 6081:6081 -p 16530:16530 -v ${PWD}/config:/root/.chronocat/config yuukinya/chronocat-docker
+docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5500:5500 -p 5900:5900 -p 6081:6081 -p 16530:16530 -v ${PWD}/config:/root/.chronocat/config yuukinya/chronocat-docker
 ```
 
 其中vncpasswd换成你的VNC密码
@@ -34,7 +34,7 @@ docker cp chronocat-docker:/root/.config/QQ ./data
 如果之前是docker run运行的，执行
 
 ```bash
-docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5900:5900 -p 6081:6081 -p 16530:16530 -v ${PWD}/config:/root/.chronocat/config -v ${PWD}/data/QQ:/root/.config/QQ yuukinya/chronocat-docker
+docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5500:5500 -p 5900:5900 -p 6081:6081 -p 16530:16530 -v ${PWD}/config:/root/.chronocat/config -v ${PWD}/data/QQ:/root/.config/QQ yuukinya/chronocat-docker
 ```
 
 如果之前是docker-compose运行的，编辑docker-compose.yml，把volumes下两行的开头注释去掉，保存，再执行
@@ -98,6 +98,7 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 ### 2023-10-13
 
 - 更新chronocat至0.0.52
+- 新增satori默认端口
 ### 2023-10-3
 
 - 更新chronocat至0.0.48

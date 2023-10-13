@@ -5,9 +5,10 @@ services:
     container_name: chronocat-docker
     restart: always
     ports:
-      - "5900:5900"
-      - "6081:6081"
-      - "16530:16530"
+      - "5500:5500"       #satori默认端口
+      - "5900:5900"       #vnc默认端口
+      - "6081:6081"       #noVNC默认端口
+      - "16530:16530"     #red默认端口
     environment:
       - TZ=Asia/Shanghai
       - VNC_PASSWD=vncpasswd
