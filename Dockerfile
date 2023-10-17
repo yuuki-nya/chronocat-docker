@@ -44,7 +44,7 @@ RUN curl -L -o /tmp/LiteLoaderQQNT.zip https://github.com/LiteLoaderQQNT/LiteLoa
 RUN sed -i 's/"main": ".\/app_launcher\/index.js"/"main": ".\/LiteLoader"/' /opt/QQ/resources/app/package.json
 
 # 安装chronocat  
-RUN curl -L -o /tmp/chronocat-llqqnt.zip https://ghproxy.com/https://github.com/chrononeko/chronocat/releases/download/v0.0.52/chronocat-llqqnt-v0.0.52.zip \
+RUN curl -L -o /tmp/chronocat-llqqnt.zip https://ghproxy.com/https://github.com/chrononeko/chronocat/releases/download/v0.0.53/chronocat-llqqnt-v0.0.53.zip \
   && mkdir -p /root/LiteLoaderQQNT/plugins \
   && unzip /tmp/chronocat-llqqnt.zip -d /root/LiteLoaderQQNT/plugins/ \
   && rm /tmp/chronocat-llqqnt.zip
