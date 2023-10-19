@@ -93,7 +93,7 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 
 ## 更新日志
 
-### 2023-10-1
+### 2023-10-19
 
 - 更新chronocat至0.0.54
 
