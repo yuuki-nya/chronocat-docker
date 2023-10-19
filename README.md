@@ -1,12 +1,10 @@
 # chronocat-docker
 
-使用ubuntu22.04 + openbox + linuxqq 制作
+本仓库是学习docker的打包与自动化构建，请下载后24小时内删除
 
 ## 使用
 
 ### 快速运行
-
-容器重建会丢失已登陆QQ数据
 
 ```bash
 docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5500:5500 -p 5900:5900 -p 6081:6081 -p 16530:16530 -v ${PWD}/config:/root/.chronocat/config yuukinya/chronocat-docker
@@ -20,7 +18,7 @@ docker run -d --name chronocat-docker -e VNC_PASSWD=vncpasswd -p 5500:5500 -p 59
 docker-compose up -d
 ```
 
-### QQ登陆数据固化（可选）
+### 数据固化（可选）
 
 先完成上面的`快速运行`，保证容器在运行状态
 
@@ -86,14 +84,18 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 ## 已知问题
 
 - 容器重启后，桌面的任务栏可能会消失，如果触发了请不要缩小或者点叉关闭，建议保持在聊天的界面，再关闭VNC远程
-- 伪造转发暂不适配Linux QQ
+- 合并转发不可用在Linux版本
 
 ## TODO
 
-- [x] 能固化已登陆QQ的数据
+- [x] 能固化已登陆的数据
 - [x] 使用docker的environment来指定VNC密码
 
 ## 更新日志
+
+### 2023-10-1
+
+- 更新chronocat至0.0.54
 
 ### 2023-10-17
 
@@ -115,7 +117,7 @@ docker exec chronocat-docker sh -c "x11vnc -storepasswd newpasswd /root/.vnc/pas
 
 - 更新chronocat至0.0.46
 - 修改chronocat配置映射至宿主机
-- 固化已登陆QQ数据 [Issue #1](https://github.com/yuuki-nya/chronocat-docker/issues/1)
+- 固化已登陆数据 [Issue #1](https://github.com/yuuki-nya/chronocat-docker/issues/1)
 
 ### 2023-9-22
 
